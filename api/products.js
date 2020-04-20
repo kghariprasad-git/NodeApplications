@@ -5,15 +5,7 @@ import FileOperation     from "../domain/FileOperation";
 const router = express.Router();
 const dataPath = 'D:\\Work_Hari\\Node\\NodeApplication\\Data\\users.json';
 var fs = require('fs');
-router.get("/", (req, res) => {
-
-    fs.readFile(dataPath, 'utf8', (err, data) => {
-        if (err) {
-            throw err;
-        }
-        res.send(JSON.parse(data));
-    });
-});
+readFileData();
 
 // CREATE
 router.post('/add', (req, res) => {  
@@ -74,12 +66,14 @@ router.post('/delete/:id', (req, res) => {
 
 
 module.exports = router;
-
-function readFile(res) {
-    fs.readFile(dataPath, 'utf8', (err, data) => {
-        if (err) {
-            throw err;
-        }
-        res.send(JSON.parse(data));
+function readFileData() {
+    router.get("/", (req, res) => {
+        fs.readFile(dataPath, 'utf8', (err, data) => {
+            if (err) {
+                throw err;
+            }
+            res.send(JSON.parse(data));
+        });
     });
 }
+
