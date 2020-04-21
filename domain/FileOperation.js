@@ -5,6 +5,7 @@ class FileOperation {
         this.fs=fs;
        
     }
+
     addRow(dataPath, fs) {
         return (fileData, Promise) => {
             var encoding = 'utf8'
@@ -16,17 +17,32 @@ class FileOperation {
             });
         };
     }
- 
-    readData(dataPath, fs) {
-        return (Promise, returnJson = false, filePath = dataPath, encoding = 'utf8') => {
-            fs.readFile(filePath, encoding, (err, data) => {
-                if (err) {
-                    throw err;
-                }
-                Promise(returnJson ? JSON.parse(data) : data);
+
+    addRowFile(dataPath, fs,fileData) {
+        return new Promise(function(resolve, reject) {
+            var fs = require('fs');
+            var encoding = 'utf8'
+            fs.writeFile(dataPath, fileData,encoding, function(err,data) {
+               if (err) reject(err);
+               else resolve(data);
             });
-        };
+        });
     }
+ 
+ 
+    readData(dataPath,fs) {
+     
+       
+        return new Promise(function(resolve, reject){
+            var fs = require('fs');
+            fs.readFile(dataPath, "utf-8", (err, data) => {
+        //        console.log("I am here...",data)
+                err ? reject(err) : resolve(data);
+            });
+          });
+    }
+
+   
 }
 
 export default FileOperation;
