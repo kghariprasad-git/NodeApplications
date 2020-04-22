@@ -11,10 +11,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@chilkat/ck-node10-win64": "^9.50.82",
+    "@chilkat/ck-node13-win64": "^9.50.82",
     "body-parser": "^1.18.3",
     "cors": "^2.8.4",
     "express": "^4.16.3",
-    "mysql": "^2.16.0"
+    "mysql": "^2.16.0",
+    "properties-reader": "^2.0.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

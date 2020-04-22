@@ -11,7 +11,7 @@ app.use(cors());
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: false }));
 
-app.use("/users", routes);
+app.use("/npmrc", routes);
 
 
 
