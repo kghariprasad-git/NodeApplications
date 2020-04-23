@@ -1,6 +1,4 @@
 const dataPath = 'C:\\Users\\1022923\\.npmrc';
-
-
 var PropertiesReader = require("properties-reader");
 const homeDir = require('os').homedir();
 var properties = PropertiesReader(homeDir + "/.npmrc");
@@ -33,7 +31,6 @@ class FileOperation {
      */
     static addNewData(key, value) {
         var properties = new PropertiesReader(homeDir + "/.npmrc");
-        // var allProps = properties.getAllProperties();
         let jsonResult = {};
         return new Promise((resolve, reject) => {
             if (key != null && value != null) {
@@ -57,8 +54,6 @@ class FileOperation {
 
         return new Promise((resolve, reject) => {
             if (allProps != null) {
-                console.log("Length of the Properties inside getConfigurations() :" + properties.length);
-                console.log("Values from the file :" + allProps);
                 jsonResult = allProps;
                 resolve(jsonResult);
             } else {
@@ -105,7 +100,6 @@ class FileOperation {
                 fileData = result;
                 for (var el in result) {
                     var buffer = new Buffer(el + " = " + result[el] + '\n');
-                    console.log("buffer..", buffer)
                     fs.writeFile(dataPath, buffer, "utf-8", function (err, data) {
                         if (err) reject(err);
                         else resolve(data);
